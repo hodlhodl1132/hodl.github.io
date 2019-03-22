@@ -18,19 +18,14 @@
 	</tbody>
 
 	<script type="text/javascript">
-		var $records = $('#json-records'),
-	    myRecords = JSON.parse($records.text());
-			$('#item-list').dynatable({
-			  dataset: {
-			    records: myRecords
-			  }
+		$('#item-list').dynatable({
+		  dataset: {
+		    ajax: true,
+		    ajaxUrl: 'https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json',
+		    ajaxOnLoad: true,
+		    records: []
+		  }
 		});
-		$(document).ready(function(){
-		    $.getJSON('https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json', function (data) {
-		      myRecords = data;
-		    });
-		});
-
 	</script>
 </body>
 </html>
