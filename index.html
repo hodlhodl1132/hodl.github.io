@@ -18,14 +18,21 @@
 	</tbody>
 
 	<script type="text/javascript">
-		$('#item-list').dynatable({
-		  dataset: {
-		    ajax: true,
-		    ajaxUrl: 'https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json',
-		    ajaxOnLoad: true,
-		    records: []
+
+
+		$.ajax({
+		  url: 'https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json',
+		  success: function(data){
+		    $('#item-list').dynatable({
+		      dataset: {
+		        records: data.items
+		      }
+		    });
 		  }
 		});
+
+
+
 	</script>
 </body>
 </html>
