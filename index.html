@@ -2,10 +2,35 @@
 <html>
 <head>
 	<title>Hodl's Item List</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.css">
 </head>
 <body>
+	<table id="item-list">
+		<thead>
+			<th>abr</th>
+			<th>price</th>
+		</thead>
+	</table>
+	<tbody>
+		
+	</tbody>
 
+	<script type="text/javascript">
+		var $records = $('#json-records'),
+	    myRecords = JSON.parse($records.text());
+			$('#item-list').dynatable({
+			  dataset: {
+			    records: myRecords
+			  }
+		});
+		$(document).ready(function(){
+		    $.getJSON('https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json', function (data) {
+		      myRecords = data;
+		    });
+		});
+
+	</script>
 </body>
 </html>
