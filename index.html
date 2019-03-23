@@ -24,7 +24,7 @@
 		  success: function(data){
 		  	var itms = JSON.parse(data);
 		  	$.each( itms["items"], function( i, val) {
-		  		items.push({"name":itms["items"][i]["abr"], "price":itms["items"][i]["price"]});
+		  		items.push({"name":val["abr"], "price":val["price"]});
 		  	});
 
 		    $('#item-list').dynatable({
