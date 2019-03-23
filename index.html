@@ -4,7 +4,7 @@
 	<title>Hodl's Item List</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.css">
 </head>
 <body>
 	<table id="item-list">
@@ -18,21 +18,22 @@
 	</tbody>
 
 	<script type="text/javascript">
-		var items;
+		var items = [];
 		$.ajax({
 		  url: 'https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json',
 		  success: function(data){
-		  	items = data;
+		  	var itms = JSON.parse(data);
+		  	$.each( itms["items"], function( i, val) {
+		  		items.push({"name":itms["items"][i]["abr"], "price":itms["items"][i]["price"]});
+		  	});
+
 		    $('#item-list').dynatable({
 		      dataset: {
-		        records: JSON.parse(data)["items"]
+		        records: items
 		      }
 		    });
 		  }
 		});
-
-
-
 	</script>
 </body>
 </html>
