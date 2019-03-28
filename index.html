@@ -78,39 +78,39 @@
 	</head>
 	<body>
 	
-	<div id="items">
+		<div id="items">
 
-	  <input class="search" placeholder="Search" />
-	  <button class="sort" data-sort="abr">
-	    Sort
-	  </button>
-	  <button class="sort" data-sort="price">
-	    Sort by Price
-	  </button>
+		  <input class="search" placeholder="Search" />
+		  <button class="sort" data-sort="abr">
+		    Sort
+		  </button>
+		  <button class="sort" data-sort="price">
+		    Sort by Price
+		  </button>
 
-	<table class="items">
-	  <tr>
-	    <th>Name</th>
-	    <th>Price</th>
-	  </tr>
-	  <tbody class="list">
-	  </tbody>
-	</table>
+		<table class="items">
+		  <tr>
+		    <th>Name</th>
+		    <th>Price</th>
+		  </tr>
+		  <tbody class="list">
+		  </tbody>
+		</table>
 
-	</div>
+		</div>
 
-	<script type="text/javascript">
-		$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json", function( data ) {
-		  var options = {
-		      valueNames: ['abr', 'price'],
-		      item: '<tr><td class="abr"></td><td class="price"></td></tr>'
-		    };
+		<script type="text/javascript">
+			$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json", function( data ) {
+			  var options = {
+			      valueNames: ['abr', 'price'],
+			      item: '<tr><td class="abr"></td><td class="price"></td></tr>'
+			    };
 
-		  var itemList = new List('items', options, data.records);
-		  console.log(itemList);
+			  var itemList = new List('items', options, data.records);
+			  console.log(itemList);
 
 
-		});
-	</script>
-</body>
+			});
+		</script>
+	</body>
 </html>
