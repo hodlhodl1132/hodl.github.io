@@ -1,28 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Hodl's Item List</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-	<style>
-	.list {
-	  font-family:sans-serif;
-	}
-	td {
-	  padding:10px; 
-	  border:solid 1px #eee;
-	}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	input {
-	  border:solid 1px #ccc;
-	  border-radius: 5px;
-	  padding:7px 14px;
-	  margin-bottom:10px
-	}
-	input:focus {
-	  outline:none;
-	  border-color:#aaa;
-	}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+	<div id="items">
+
+	  <input class="search" placeholder="Search" />
+	  <button class="sort" data-sort="abr">
+	    Sort
+	  </button>
+	  <button class="sort" data-sort="price">
+	    Sort by Price
+	  </button>
+
+	<table class="items">
+	  <tr>
+	    <th>Name</th>
+	    <th>Price</th>
+	  </tr>
+	  <tbody class="list">
+	  </tbody>
+	</table>
+
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<style>
 	.sort {
 	  padding:8px 30px;
 	  border-radius: 6px;
@@ -75,42 +91,17 @@
 	  right:-5px;
 	}
 	</style>
-	</head>
-	<body>
-	
-		<div id="items">
+	<script type="text/javascript">
+		$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json", function( data ) {
+		  var options = {
+		      valueNames: ['abr', 'price'],
+		      item: '<tr><td class="abr"></td><td class="price"></td></tr>'
+		    };
 
-		  <input class="search" placeholder="Search" />
-		  <button class="sort" data-sort="abr">
-		    Sort
-		  </button>
-		  <button class="sort" data-sort="price">
-		    Sort by Price
-		  </button>
+		  var itemList = new List('items', options, data.records);
+		  console.log(itemList);
 
-		<table class="items">
-		  <tr>
-		    <th>Name</th>
-		    <th>Price</th>
-		  </tr>
-		  <tbody class="list">
-		  </tbody>
-		</table>
-
-		</div>
-
-		<script type="text/javascript">
-			$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json", function( data ) {
-			  var options = {
-			      valueNames: ['abr', 'price'],
-			      item: '<tr><td class="abr"></td><td class="price"></td></tr>'
-			    };
-
-			  var itemList = new List('items', options, data.records);
-			  console.log(itemList);
-
-
-			});
-		</script>
-	</body>
+		});
+	</script>
+  </body>
 </html>
