@@ -108,8 +108,9 @@
 					<table class="table events">
 
 						<tr>
-							<th scope="col">Name</th>
-							<th scope="col">Price</th>
+							<th scope="col" class="btn btn-primary sort" data-sort="abr">Name</th>
+							<th scope="col" class="btn btn-primary sort" data-sort="price">Price</th>
+							<th scope="col">Karma</th>
 						</tr>
 
 						<tbody class="list">
@@ -187,8 +188,8 @@
 		});
 		$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/eventlist.json", function( data ) {
 		  var options = {
-		      valueNames: ['abr', 'price'],
-		      item: '<tr><td class="abr" scope="row"></td><td class="price"></td></tr>'
+		      valueNames: ['abr', 'price', 'karmatype'],
+		      item: '<tr><td class="abr" scope="row">!buyevent </td><td class="price"></td><td class="karmatype"></td></tr>'
 		    };
 
 		  var itemList = new List('events', options, data.incitems);
