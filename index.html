@@ -181,13 +181,6 @@
 	}
 	</style>
 	<script type="text/javascript">
-
-	      new Twitch.Embed("twitch-embed", {
-	        width: 854,
-	        height: 480,
-	        channel: "hodlhodl"
-	      });
-
 		$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json", function( data ) {
 		  var options = {
 		      valueNames: ['abr', 'price'],
@@ -208,6 +201,13 @@
 		  console.log(data);
 
 		});
+	</script>
+	<script type="text/javascript">
+	      new Twitch.Embed("twitch-embed", {
+	        width: 854,
+	        height: 480,
+	        channel: "hodlhodl"
+	      });
 	</script>
   </body>
 </html>
