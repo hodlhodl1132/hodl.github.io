@@ -87,9 +87,36 @@
 				</div>
 	          </div>
 	          <div class="col-md-6">
-	            <h2>Heading</h2>
-	            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+				<div id="events">
+
+					<div class="input-group input-group-sm mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="inputGroup-sizing-sm">Search</span>
+					  </div>
+					  <input type="text" class="form-control search" aria-label="Search" aria-describedby="inputGroup-sizing-sm">
+					</div>
+
+					<p>
+						<button type="button" class="btn btn-primary sort" data-sort="abr">
+							Sort
+						</button>
+						<button type="button" class="btn btn-primary sort" data-sort="price">
+							Sort by Price
+						</button>
+					</p>
+
+					<table class="table events">
+
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Price</th>
+						</tr>
+
+						<tbody class="list">
+						</tbody>
+
+					</table>
+				</div>
 	          </div>
 	        </div>
 
@@ -154,7 +181,7 @@
 		      item: '<tr><td class="abr" scope="row"></td><td class="price"></td></tr>'
 		    };
 
-		  var itemList = new List('items', options, data.records);
+		  var itemList = new List('items', options, data.items);
 		  console.log(itemList);
 
 		});
