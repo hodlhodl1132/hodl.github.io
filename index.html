@@ -5,34 +5,112 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.css">
+	<style>
+	.list {
+	  font-family:sans-serif;
+	}
+	td {
+	  padding:10px; 
+	  border:solid 1px #eee;
+	}
+
+	input {
+	  border:solid 1px #ccc;
+	  border-radius: 5px;
+	  padding:7px 14px;
+	  margin-bottom:10px
+	}
+	input:focus {
+	  outline:none;
+	  border-color:#aaa;
+	}
+	.sort {
+	  padding:8px 30px;
+	  border-radius: 6px;
+	  border:none;
+	  display:inline-block;
+	  color:#fff;
+	  text-decoration: none;
+	  background-color: #28a8e0;
+	  height:30px;
+	}
+	.sort:hover {
+	  text-decoration: none;
+	  background-color:#1b8aba;
+	}
+	.sort:focus {
+	  outline:none;
+	}
+	.sort:after {
+	  display:inline-block;
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-bottom: 5px solid transparent;
+	  content:"";
+	  position: relative;
+	  top:-10px;
+	  right:-5px;
+	}
+	.sort.asc:after {
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-top: 5px solid #fff;
+	  content:"";
+	  position: relative;
+	  top:4px;
+	  right:-5px;
+	}
+	.sort.desc:after {
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-bottom: 5px solid #fff;
+	  content:"";
+	  position: relative;
+	  top:-4px;
+	  right:-5px;
+	}
+	</style>
 </head>
 <body>
-	<table id="item-list">
-		<thead>
-			<th>name</th>
-			<th>price</th>
-		</thead>
+	
+	<div id="items">
+
+	  <input class="search" placeholder="Search" />
+	  <button class="sort" data-sort="abr">
+	    Sort
+	  </button>
+	  <button class="sort" data-sort="price">
+	    Sort by Price
+	  </button>
+
+	<table class="items">
+	  <tr>
+	    <th>Name</th>
+	    <th>Price</th>
+	  </tr>
+	  <tbody class="list">
+	  </tbody>
 	</table>
-	<tbody>
-		
-	</tbody>
+
+	</div>
 
 	<script type="text/javascript">
-		var items = [];
-		$.ajax({
-		  url: 'https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json',
-		  success: function(data){
-		  	var itms = JSON.parse(data);
-		  	$.each( itms["items"], function( i, val) {
-		  		items.push({"name":val["abr"], "price":val["price"]});
-		  	});
+		$.getJSON( "https://raw.githubusercontent.com/hodldeeznuts/hodl.github.io/master/itemlist.json", function( data ) {
+		  var options = {
+		      valueNames: ['abr', 'price'],
+		      item: '<tr><td class="abr"></td><td class="price"></td></tr>'
+		    };
 
-		    $('#item-list').dynatable({
-		      dataset: {
-		        records: items
-		      }
-		    });
-		  }
+		  var itemList = new List('items', options, data.records);
+		  console.log(itemList);
+
+
 		});
 	</script>
 </body>
