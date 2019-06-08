@@ -101,6 +101,7 @@
                            <tr>
                               <th scope="col" class="sort" data-sort="abr">Name</th>
                               <th scope="col" class="sort" data-sort="price">Price</th>
+			      <th scope="col" class="sort" data-sort="category">Category</th>
                            </tr>
                            <tbody class="list">
                            </tbody>
@@ -207,8 +208,8 @@
          let itemList = null;
          $.getJSON( itemListURL, function( data ) {
          var options = {
-           valueNames: ['abr', 'price'],
-           item: '<tr><td class="abr" scope="row"></td><td class="price"></td></tr>'
+           valueNames: ['abr', 'price', 'category'],
+           item: '<tr><td class="abr" scope="row"></td><td class="price"></td><td class="category"></td></tr>'
          };
          
          var itemData = [];
