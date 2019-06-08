@@ -204,7 +204,7 @@
          }
       </style>
       <script type="text/javascript">
-         const itemList;
+         const itemList = null;
          $.getJSON( itemListURL, function( data ) {
          var options = {
            valueNames: ['abr', 'price'],
@@ -223,7 +223,7 @@
          itemList = new List('items', options, itemData);
          });
          
-         const eventList;
+         const eventList = null;
          $.getJSON( eventListURL, function( data ) {
          var options = {
            valueNames: ['abr', 'price', 'karmatype'],
