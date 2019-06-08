@@ -242,11 +242,11 @@
          eventList = new List('events', options, eventData);
          });
             
-            $( "#item-price-min" ).on(function() {
+            $( "#item-price-min" ).change(function() {
 		    updateItemFilter();
             });
 	      
-	    $( "#item-price-max" ).on(function() {
+	    $( "#item-price-max" ).change(function() {
 		    updateItemFilter();
             });
 	      
