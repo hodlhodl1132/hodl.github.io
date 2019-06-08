@@ -11,8 +11,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
       <title>Hodl's Item List</title>
       <script type="text/javascript">
-         var itemListURL = "https://raw.githubusercontent.com/twitchtoolkit/item-list/master/itemlist.json";
-         var eventListURL = "https://raw.githubusercontent.com/twitchtoolkit/item-list/master/eventlist.json";
+         const itemListURL = "https://raw.githubusercontent.com/twitchtoolkit/item-list/master/itemlist.json";
+         const eventListURL = "https://raw.githubusercontent.com/twitchtoolkit/item-list/master/eventlist.json";
       </script>
    </head>
    <body>
@@ -207,7 +207,7 @@
          }
       </style>
       <script type="text/javascript">
-      var itemList;
+      const itemList;
 		$.getJSON( itemListURL, function( data ) {
 		  var options = {
 		      valueNames: ['abr', 'price'],
@@ -226,7 +226,7 @@
 		  itemList = new List('items', options, itemData);
 		});
 
-      var eventList;
+      const eventList;
 		$.getJSON( eventListURL, function( data ) {
 		  var options = {
 		      valueNames: ['abr', 'price', 'karmatype'],
