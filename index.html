@@ -57,18 +57,18 @@
             <div class="container">
                <div class = "row">
                   <div class="col-md-12">
-                        <div class='tabs'>
-                           <form>
-                              <div class="form-group">
-                                 <button class="btn btn-success" ng-class="{'active': (selected == '1')}" ng-click='selected=1'>
-                                 Items
-                                 </button>
-                                 <button class="btn btn-success" ng-class="{'active': (selected == '2')}" ng-click='selected=2'>
-                                 Events
-                                 </button>
-                              </div>
-                           </form>
-                        </div>
+                     <div class='tabs'>
+                        <form>
+                           <div class="form-group">
+                              <button class="btn btn-success" ng-class="{'active': (selected == '1')}" ng-click='selected=1'>
+                              Items
+                              </button>
+                              <button class="btn btn-success" ng-class="{'active': (selected == '2')}" ng-click='selected=2'>
+                              Events
+                              </button>
+                           </div>
+                        </form>
+                     </div>
                   </div>
                </div>
                <div class="row" ng-show='selected == 1'>
@@ -87,16 +87,15 @@
                            <button type="button" class="btn btn-primary sort" data-sort="price">
                            Sort by Price
                            </button>
-                           
-                           <div class="form-group row">
-                              <label class="col-sm-2 col-form-label" for="">Price Between:</label>
-                              <div class="col-sm-2">
-                                 <input type="number" class="form-control" id="item-price-min" placeholder="0">
-                              </div>
-                              <div class="col-sm-2">
-                                 <input type="number" class="form-control" id="item-price-max" placeholder="100000">
-                              </div>
+                        <div class="form-group row">
+                           <label class="col-sm-2 col-form-label" for="">Price Between:</label>
+                           <div class="col-sm-2">
+                              <input type="number" class="form-control" id="item-price-min" placeholder="0">
                            </div>
+                           <div class="col-sm-2">
+                              <input type="number" class="form-control" id="item-price-max" placeholder="100000">
+                           </div>
+                        </div>
                         </p>
                         <table class="table items">
                            <tr>
@@ -147,10 +146,8 @@
             <!-- Example row of columns -->
             <div class="row">
                <div class="col-md-6">
-
                </div>
                <div class="col-md-6">
-
                </div>
             </div>
             <hr>
@@ -207,47 +204,61 @@
          }
       </style>
       <script type="text/javascript">
-      const itemList;
-		$.getJSON( itemListURL, function( data ) {
-		  var options = {
-		      valueNames: ['abr', 'price'],
-		      item: '<tr><td class="abr" scope="row"></td><td class="price"></td></tr>'
-		    };
-
-		    var itemData = [];
-		    $.each(data.items, function(index, value)
-		    {
-		    	if (value["price"] > 0)
-		    	{
-		    		itemData.push(value);
-		    	}
-		    });
-
-		  itemList = new List('items', options, itemData);
-		});
-
-      const eventList;
-		$.getJSON( eventListURL, function( data ) {
-		  var options = {
-		      valueNames: ['abr', 'price', 'karmatype'],
-		      item: '<tr><td class="abr" scope="row"></td><td class="price"></td><td class="karmatype"></td></tr>'
-		    };
-
-	      var eventData = [];
-	      $.each(data.incitems, function(index, value)
-	      {
-      		if (value["price"] > 0)
-      		{
-      			eventData.push(value);
-      		}
-	      });
-
-		  eventList = new List('events', options, eventData);
-		});
+         const itemList;
+         $.getJSON( itemListURL, function( data ) {
+         var options = {
+           valueNames: ['abr', 'price'],
+           item: '<tr><td class="abr" scope="row"></td><td class="price"></td></tr>'
+         };
          
-         $( "#item-price-min" ).change(function() {
-           
+         var itemData = [];
+         $.each(data.items, function(index, value)
+         {
+         	if (value["price"] > 0)
+         	{
+         		itemData.push(value);
+         	}
          });
+         
+         itemList = new List('items', options, itemData);
+         });
+         
+         const eventList;
+         $.getJSON( eventListURL, function( data ) {
+         var options = {
+           valueNames: ['abr', 'price', 'karmatype'],
+           item: '<tr><td class="abr" scope="row"></td><td class="price"></td><td class="karmatype"></td></tr>'
+         };
+         
+          var eventData = [];
+          $.each(data.incitems, function(index, value)
+          {
+         		if (value["price"] > 0)
+         		{
+         			eventData.push(value);
+         		}
+          });
+         
+         eventList = new List('events', options, eventData);
+         });
+            
+            $( "#item-price-min" ).change(function() {
+		    updateItemFilter();
+            });
+	      
+         function updateItemFilter()
+	      {
+	        var minPrice = $( "#item-price-min" ).val();
+	        var maxPrice = $( "#item-price-max" ).val();
+	  	itemList.filter(function(item) {
+	        	var allow = true;
+	                if (minPrice != null && parseInt(item.values().price) < minPrice)
+			{
+				allow = false;
+			}
+			return allow;
+	      	});  
+	      }
       </script>
       <script type="text/javascript">
          var tabs = angular.module('tabs', [])
