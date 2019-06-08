@@ -256,11 +256,11 @@
 	        var maxPrice = $( "#item-price-max" ).val();
 	  	itemList.filter(function(item) {
 	        	var allow = true;
-	                if (minPrice != null && parseInt(item.values().price) < minPrice)
+	                if (minPrice != "" && parseInt(item.values().price) < minPrice)
 			{
 				allow = false;
 			}
-			if (maxPrice != null && parseInt(item.values().price) > maxPrice)
+			if (maxPrice != "" && parseInt(item.values().price) > maxPrice)
 			{
 				allow = false;
 			}
