@@ -246,6 +246,10 @@
 		    updateItemFilter();
             });
 	      
+	    $( "#item-price-max" ).on(function() {
+		    updateItemFilter();
+            });
+	      
          function updateItemFilter()
 	      {
 	        var minPrice = $( "#item-price-min" ).val();
@@ -253,6 +257,10 @@
 	  	itemList.filter(function(item) {
 	        	var allow = true;
 	                if (minPrice != null && parseInt(item.values().price) < minPrice)
+			{
+				allow = false;
+			}
+			if (maxPrice != null && parseInt(item.values().price) > maxPrice)
 			{
 				allow = false;
 			}
