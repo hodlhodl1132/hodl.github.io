@@ -52,13 +52,15 @@
          <div class="container">
             <div class = "row">
                <div class="col-md-12">
-                  <div class='tabs'>
-                     <span ng-class="{'active': (selected == '1')}" ng-click='selected=1'>
-                     First
-                     </span>
-                     <span ng-class="{'active': (selected == '2')}" ng-click='selected=2'>
-                     Second
-                     </span>
+                  <div ng-app='tabs' ng-controller='tabCtrl'>
+                     <div class='tabs'>
+                        <span ng-class="{'active': (selected == '1')}" ng-click='selected=1'>
+                        First
+                        </span>
+                        <span ng-class="{'active': (selected == '2')}" ng-click='selected=2'>
+                        Second
+                        </span>
+                     </div>
                   </div>
                </div>
             </div>
